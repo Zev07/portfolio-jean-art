@@ -54,7 +54,7 @@ export const works: WorkItem[] = [
     id: "6",
     title: "JigglyPuff",
     category: "principal",
-    imageUrl: "/images/JigglyPuff.png",
+    imageUrl: "/images/Jigglypuff.png",
     year: "2025",
     description: "Digital",
   },

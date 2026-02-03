@@ -14,7 +14,7 @@ export default function SobrePage() {
         <aside className="md:col-span-5 md:sticky md:top-32 md:h-fit">
           <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-6 shadow-2xl shadow-zinc-200 dark:shadow-black/50 ring-1 ring-zinc-100 dark:ring-zinc-800">
             <Image
-              src="/images/BestDraw.png"
+              src="/images/bestdraw.png"
               alt="Retrato do Artista"
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"
@@ -29,10 +29,10 @@ export default function SobrePage() {
             {t.visualArtist}
           </p>
           <div className="mt-8 flex gap-6">
-            <a href="#" className="text-muted hover:text-primary transition-colors text-sm uppercase tracking-wider font-bold">
+            <a href="https://www.instagram.com/jeanrabiscos/" className="text-muted hover:text-primary transition-colors text-sm uppercase tracking-wider font-bold">
                 Instagram
             </a>
-            <a href="#" className="text-muted hover:text-primary transition-colors text-sm uppercase tracking-wider font-bold">
+            <a href="https://www.linkedin.com/in/jeanxamura/" className="text-muted hover:text-primary transition-colors text-sm uppercase tracking-wider font-bold">
                 LinkedIn
             </a>
           </div>
