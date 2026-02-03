@@ -1,26 +1,71 @@
 @import "tailwindcss";
+@import "tailwindcss/utilities";
 
+/* --- CONFIGURAÇÃO DE CORES --- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* === MODO CLARO (LIGHT) === */
+  --background: #ffffff;      /* Fundo da Página */
+  --foreground: #171717;      /* Texto Principal (Preto suave) */
+  --surface: #f4f4f5;         /* Footer/Seções secundárias */
+  
+  /* ELEMENTOS ESPECÍFICOS (Configure suas cores aqui!) */
+  --card-bg: #6e6e6e;         /* Fundo dos Cards */
+  --card-border: #e4e4e7;     /* Borda dos Cards (Zinc 200) */
+  --text-muted: #18181b;      /* Texto secundário/datas (Zinc 900) */
+  --input-bg: #bdbdbd;        /* Fundo de formulários */
+  --footer-bg:#858585;    /* Fundo do Footer */
+  
+  /* A COR DESTAQUE: VINHO */
+  --primary-color: #881337;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  /* === MODO ESCURO (DARK) === */
+  --background: #09090b;      /* Preto Profundo */
+  --foreground: #e4e4e7;      /* Texto Principal */
+  --surface: #18181b;         /* Footer (Zinc 900) */
+  
+  /* ELEMENTOS ESPECÍFICOS (Versão Escura) */
+  --card-bg: #18181b;         /* Cards ficam cinza chumbo para destacar do fundo preto */
+  --card-border: #27272a;     /* Borda sutil (Zinc 800) */
+  --text-muted: #a1a1aa;      /* Texto secundário mais claro (Zinc 400) */
+  --input-bg: #27272a;        /* Formulários escuros */
+  
+  /* A COR DESTAQUE: CORAL */
+  --primary-color: #fb7185;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* --- APLICANDO AO SITE --- */
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- CLASSES ÚTEIS --- */
+@layer utilities {
+  .text-primary { color: var(--primary-color) !important; }
+  .bg-primary { background-color: var(--primary-color) !important; }
+  .border-primary { border-color: var(--primary-color) !important; }
+  .bg-surface { background-color: var(--surface) !important; }
+  
+  /* Classes novas para usar nos elementos */
+  .bg-card { background-color: var(--card-bg) !important; }
+  .border-card { border-color: var(--card-border) !important; }
+  .text-muted { color: var(--text-muted) !important; }
+
+  /* BOTÃO PADRÃO */
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
 }
