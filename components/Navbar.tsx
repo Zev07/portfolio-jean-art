@@ -30,7 +30,7 @@ export default function Navbar() {
     <nav className="sticky top-0 w-full bg-white/80 dark:bg-black/80 backdrop-blur-md z-50 border-b border-zinc-200 dark:border-zinc-800 transition-colors">
       <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
         <Link href="/" className="text-xl font-bold tracking-widest uppercase text-zinc-900 dark:text-white group">
-          Jean<span className="text-primary font-bold leading-none"> x art</span>
+          Jean<span className="text-primary font-bold leading-none">X</span>
         </Link>
 
         {/* MENU DESKTOP */}

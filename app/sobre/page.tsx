@@ -23,7 +23,7 @@ export default function SobrePage() {
           </div>
           
           <h1 className="text-4xl font-bold text-muted dark:text-muted mb-2 tracking-tight">
-            Jean Art<span className="text-primary">.</span>
+            Jean<span className="text-primary">X</span>
           </h1>
           <p className="text-xl text-foreground dark:text-foreground font-light">
             {t.visualArtist}

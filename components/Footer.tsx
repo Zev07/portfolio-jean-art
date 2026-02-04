@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div id ="brand" className="col-span-1 md:col-span-2">
           <span className="text-2xl font-bold tracking-widest uppercase text-primary">
-            Jean X Art
+            JeanX
           </span>
           <p className="text-muted leading-relaxed max-w-xs">
             {t.footerDescription}
@@ -49,7 +49,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="text-primary max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-900 flex flex-col md:flex-row justify-between items-center text-xs gap-4">
-        <p>&copy; {currentYear} Jean X Art All rights reserved.</p>
+        <p>&copy; {currentYear} JeanX All rights reserved.</p>
         <p>Dev by <span className="text-primary font-bold">Zëv</span></p>
       </div>
     </footer>
