@@ -4,7 +4,7 @@ import { useForm, ValidationError } from "@formspree/react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function ContactForm() {
-  const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORMSPREE_ID!);
+  const [state, handleSubmit] = useForm("mrelnvyr");
   const { t } = useLanguage();
   if (state.succeeded) {
     return (
