@@ -58,6 +58,14 @@ export const works: WorkItem[] = [
     year: "2025",
     description: "Digital",
   },
+    {
+    id: "7",
+    title: "JigglyPuff",
+    category: "principal",
+    imageUrl: "/images/bestdraw.png",
+    year: "2025",
+    description: "Digital",
+  },
   // --- SKETCHES (RASCUNHOS) ---
   {
     id: "01",
