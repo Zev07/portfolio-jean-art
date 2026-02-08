@@ -1,21 +1,31 @@
+"use client";
+
 interface SolidSectionProps {
-    bgColor?: string;
-    textColor?: string;
-    children: React.ReactNode;
+  children: React.ReactNode;
+  bgColor?: string; // Aceita classes como 'bg-white'
+  textColor?: string;
+  className?: string;
 }
 
 export default function SolidSection({
-    bgColor = "bg-zinc-50",
-    textColor = "text-zinc-800",
-    children
-}: SolidSectionProps)
+  children,
+  bgColor = "bg-white",
+  textColor = "text-black",
+  className = "",
+}: SolidSectionProps) {
+  return (
+    <section 
+      className={`py-20 px-6 md:px-12 relative overflow-hidden ${bgColor} ${textColor} ${className}`}
+    >
+      {/* Padrão de Fundo Sutil (Dots) para não ficar "branco chato" */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }}
+      ></div>
 
-{
-return (
-    <section className={`${bgColor} ${textColor} py-24 px-6`}>
-    <div className="max-w-4xl mx-auto text-center flex flex-col gap-8 items-center">
+      <div className="max-w-7xl mx-auto relative z-10">
         {children}
-    </div>
+      </div>
     </section>
-    );
+  );
 }

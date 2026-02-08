@@ -1,71 +1,49 @@
 @import "tailwindcss";
 @import "tailwindcss/utilities";
 
-/* --- CONFIGURAÇÃO DE CORES --- */
+/* --- CONFIGURAÇÃO DE CORES (PERSONA 5 THEME) --- */
 :root {
-  /* === MODO CLARO (LIGHT) === */
-  --background: #ffffff;      /* Fundo da Página */
-  --foreground: #171717;      /* Texto Principal (Preto suave) */
-  --surface: #f4f4f5;         /* Footer/Seções secundárias */
+  /* === MODO CLARO (Jornal/Mangá) === */
+  --background: #f4f4f5;      /* Zinco bem claro (Papel) */
+  --foreground: #000000;      /* Preto Absoluto (Tinta) */
   
-  /* ELEMENTOS ESPECÍFICOS (Configure suas cores aqui!) */
-  --card-bg: #6e6e6e;         /* Fundo dos Cards */
-  --card-border: #e4e4e7;     /* Borda dos Cards (Zinc 200) */
-  --text-muted: #18181b;      /* Texto secundário/datas (Zinc 900) */
-  --input-bg: #bdbdbd;        /* Fundo de formulários */
-  --footer-bg:#858585;    /* Fundo do Footer */
+  /* ELEMENTOS */
+  --card-bg: #ffffff;         /* Cards Brancos */
+  --card-border: #000000;     /* Bordas Pretas */
+  --muted: #52525b;           /* Texto secundário cinza escuro */
   
-  /* A COR DESTAQUE: VINHO */
-  --primary-color: #881337;
+  /* DESTAQUE */
+  --primary-color: #D91C2B;   /* Vermelho Persona */
 }
 
 .dark {
-  /* === MODO ESCURO (DARK) === */
+  /* === MODO ESCURO (Phantom Thief) === */
   --background: #09090b;      /* Preto Profundo */
-  --foreground: #e4e4e7;      /* Texto Principal */
-  --surface: #18181b;         /* Footer (Zinc 900) */
+  --foreground: #ffffff;      /* Branco Puro */
   
-  /* ELEMENTOS ESPECÍFICOS (Versão Escura) */
-  --card-bg: #18181b;         /* Cards ficam cinza chumbo para destacar do fundo preto */
-  --card-border: #27272a;     /* Borda sutil (Zinc 800) */
-  --text-muted: #a1a1aa;      /* Texto secundário mais claro (Zinc 400) */
-  --input-bg: #27272a;        /* Formulários escuros */
+  /* ELEMENTOS */
+  --card-bg: #000000;         /* Cards Pretos */
+  --card-border: #e4e4e7;     /* Bordas Claras */
+  --muted: #a1a1aa;           /* Texto secundário cinza claro */
   
-  /* A COR DESTAQUE: CORAL */
-  --primary-color: #fb7185;
+  /* DESTAQUE */
+  --primary-color: #D91C2B;   /* Vermelho Persona */
 }
 
 /* --- APLICANDO AO SITE --- */
 body {
   background-color: var(--background);
   color: var(--foreground);
+  /* Transição suave ao trocar de tema */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* --- CLASSES ÚTEIS --- */
+/* --- UTILITÁRIOS FORÇADOS --- */
 @layer utilities {
-  .text-primary { color: var(--primary-color) !important; }
-  .bg-primary { background-color: var(--primary-color) !important; }
-  .border-primary { border-color: var(--primary-color) !important; }
-  .bg-surface { background-color: var(--surface) !important; }
+  .text-foreground { color: var(--foreground) !important; }
+  .bg-background { background-color: var(--background) !important; }
   
-  /* Classes novas para usar nos elementos */
+  /* Classes Persona Específicas */
   .bg-card { background-color: var(--card-bg) !important; }
   .border-card { border-color: var(--card-border) !important; }
-  .text-muted { color: var(--text-muted) !important; }
-
-  /* BOTÃO PADRÃO */
-  .btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 600;
-    transition: all 0.2s;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  }
-  .btn-primary:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-  }
 }

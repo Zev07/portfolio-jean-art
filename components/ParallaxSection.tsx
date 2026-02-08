@@ -9,13 +9,15 @@ interface ParallaxSectionProps {
   altText: string;
   children?: React.ReactNode;
   focusPosition?: string;
+  className?: string;
 }
 
 export default function ParallaxSection({
   imageUrl,
   altText,
   children,
-  focusPosition = "object-center"
+  focusPosition = "object-center",
+  className = "h-[60vh] md:h-[80vh]",
 }: ParallaxSectionProps) {
   
   const ref = useRef(null);
@@ -29,7 +31,7 @@ export default function ParallaxSection({
   return (
     <section
       ref={ref}
-      className="relative h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden"
+      className={`relative flex items-center justify-center overflow-hidden ${className}`}
     >
       <motion.div style={{ y }} className="absolute inset-0 h-[120%] w-full -top-[10%] z-0">
         <Image

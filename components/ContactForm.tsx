@@ -1,106 +1,133 @@
 "use client";
 
-import { useForm, ValidationError } from "@formspree/react";
-import { useLanguage } from "@/context/LanguageContext";
+import { useState, useRef } from "react";
+import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
+import { Loader2, Send } from "lucide-react";
 
 export default function ContactForm() {
-  const [state, handleSubmit] = useForm("mrelnvyr");
-  const { t } = useLanguage();
-  if (state.succeeded) {
-    return (
-      <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center p-8 animate-fade-in">
-        <div className="w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-6 text-green-600 dark:text-green-400">
-          <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-2">
-          {t.messageSent}
-        </h3>
-        <p className="text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
-          {t.thankYouMessage}
-        </p>
-        
-        <button
-          onClick={() => window.location.reload()}
-          className="mt-8 text-sm font-bold text-primary hover:underline uppercase tracking-widest"
-        >
-          {t.sendNewMessage}
-        </button>
-      </div>
-    );
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [token, setToken] = useState<string | null>(null);
+  const refTurnstile = useRef<TurnstileInstance>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("loading");
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+    
+    if (!token) {
+        setStatus("error");
+        alert("Erro de verificação de segurança. Tente novamente.");
+        return;
+    }
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, token }),
+      });
+
+      if (!response.ok) throw new Error("Falha no envio");
+
+      setStatus("success");
+      refTurnstile.current?.reset();
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+    }
   }
+
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-      
-      <div className="flex flex-col gap-2">
-        <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-          {t.yourName}
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="opacity-0 absolute -z-10 w-0 h-0 overflow-hidden">
+        <label htmlFor="gotcha">Não preencha este campo se for humano:</label>
+        <input
+          type="text"
+          name="gotcha"
+          id="gotcha"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="name" className="block text-sm font-bold uppercase tracking-widest">
+          Name / Company
         </label>
         <input
+          required
+          name="name"
           id="name"
           type="text"
-          name="name"
-          required
-          placeholder={t.namePlaceholder}
-          className="w-full px-4 py-3 rounded-lg outline-none transition-all duration-200 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:border-primary focus:ring-1 focus:ring-primary"
+          className="w-full bg-transparent p-3 font-medium outline-none transition-all focus:bg-black/5 dark:focus:bg-white/10"
+          placeholder="Joker"
         />
-        <ValidationError prefix="Name" field="name" errors={state.errors} />
       </div>
-      <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-          {t.yourEmail}
+
+      <div className="space-y-2">
+        <label htmlFor="email" className="block text-sm font-bold uppercase tracking-widest">
+          Email
         </label>
         <input
+          required
+          name="email"
           id="email"
           type="email"
-          name="email"
-          required
-          placeholder={t.emailPlaceholder}
-          className="w-full px-4 py-3 rounded-lg outline-none transition-all duration-200 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:border-primary focus:ring-1 focus:ring-primary"
+          className="w-full bg-transparent p-3 font-medium outline-none transition-all focus:bg-black/5 dark:focus:bg-white/10"
+          placeholder="phantom@thieves.com"
         />
-        <ValidationError prefix="Email" field="email" errors={state.errors} />
       </div>
-      <div className="flex flex-col gap-2">
-        <label htmlFor="subject" className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-          {t.typeOfInterest}
-        </label>
-        <div className="relative">
-          <select
-            id="subject"
-            name="subject"
-            className="w-full px-4 py-3 rounded-lg outline-none transition-all duration-200 appearance-none bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:border-primary focus:ring-1 focus:ring-primary cursor-pointer"
-          >
-            <option value="Comissão">{t.customCommission}</option>
-            <option value="Compra">{t.buyExisting}</option>
-            <option value="Exposição">{t.exhibition}</option>
-            <option value="Outro">{t.otherSubject}</option>
-          </select>
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
-            ▼
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-          {t.message}
+
+      <div className="space-y-2">
+        <label htmlFor="message" className="block text-sm font-bold uppercase tracking-widest">
+          Message
         </label>
         <textarea
-          id="message"
-          name="message"
           required
-          placeholder={t.messagePlaceholder}
-          className="w-full px-4 py-3 rounded-lg outline-none transition-all duration-200 resize-none min-h-[150px] bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:border-primary focus:ring-1 focus:ring-primary"
+          name="message"
+          id="message"
+          rows={5}
+          className="w-full resize-none bg-transparent p-3 font-medium outline-none transition-all focus:bg-black/5 dark:focus:bg-white/10"
+          placeholder="I want to steal your heart..."
         />
-        <ValidationError prefix="Message" field="message" errors={state.errors} />
       </div>
+      <div className="my-4">
+        <Turnstile
+            ref={refTurnstile}
+            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+            onSuccess={(token) => setToken(token)}
+            options={{
+                theme: "auto",
+                size: "flexible"
+            }}
+        />
+      </div>
+
       <button
+        disabled={status === "loading" || status === "success"}
         type="submit"
-        disabled={state.submitting}
-        className="btn-primary w-full py-4 text-lg mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-black dark:bg-white text-white dark:text-black font-black uppercase tracking-[0.2em] py-4 hover:bg-[#D91C2B] hover:text-white dark:hover:bg-[#D91C2B] dark:hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
-        {state.submitting ? t.sending : t.sendMessage}
+        {status === "loading" ? (
+          <>
+            <Loader2 className="animate-spin" /> Enviando...
+          </>
+        ) : status === "success" ? (
+          "Enviado com Sucesso!"
+        ) : (
+          <>
+            Enviar Mensagem <Send size={18} />
+          </>
+        )}
       </button>
+
+      {status === "error" && (
+        <p className="text-[#D91C2B] font-bold text-center text-sm">
+          Erro ao enviar. Tente novamente mais tarde.
+        </p>
+      )}
     </form>
   );
 }
