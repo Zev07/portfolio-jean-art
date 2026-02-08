@@ -12,10 +12,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Nome do Artista',
-    default: 'Portfólio | Nome do Artista',
+    template: '%s | JeanX',
+    default: 'Portfólio | JeanX',
   },
-  description: "Portfólio oficial de arte contemporânea e design visual.",
+  description: "Portfólio oficial de arte de JeanX",
   icons: {
     icon: '/favicon.ico',
   },
