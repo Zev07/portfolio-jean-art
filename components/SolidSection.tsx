@@ -2,7 +2,7 @@
 
 interface SolidSectionProps {
   children: React.ReactNode;
-  bgColor?: string; // Aceita classes como 'bg-white'
+  bgColor?: string;
   textColor?: string;
   className?: string;
 }
@@ -14,11 +14,10 @@ export default function SolidSection({
   className = "",
 }: SolidSectionProps) {
   return (
-    <section 
+    <section
       className={`py-20 px-6 md:px-12 relative overflow-hidden ${bgColor} ${textColor} ${className}`}
     >
-      {/* Padrão de Fundo Sutil (Dots) para não ficar "branco chato" */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }}
       ></div>
