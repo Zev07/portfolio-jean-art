@@ -28,6 +28,7 @@ export default function ObrasPage() {
   useEffect(() => {
     const fetchWorks = async () => {
       try {
+        // Query buscando todos os campos necessários
         const query = `*[_type == "work"] | order(year desc) {
           _id,
           title,
@@ -39,14 +40,28 @@ export default function ObrasPage() {
         }`;
         
         const data = await client.fetch(query);
+
+        // Mapeamento com proteção contra dados vazios
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const formattedWorks: WorkItem[] = data.map((item: any) => ({
           id: item._id,
           title: item.title,
           category: item.category,
           year: item.year,
           description: item.description,
-          imageUrl: item.mainImage ? urlFor(item.mainImage).width(1200).url() : '/images/placeholder.png',
-          processImages: item.processImages?.map((img: any) => urlFor(img).width(800).url()) || []
+          
+          // Verifica se mainImage existe e tem asset antes de gerar URL
+          imageUrl: (item.mainImage && item.mainImage.asset) 
+            ? urlFor(item.mainImage).width(1200).url() 
+            : '/images/placeholder.png',
+          
+          // Verifica se processImages é um array válido e filtra itens sem asset
+          processImages: Array.isArray(item.processImages)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ? item.processImages
+                .filter((img: any) => img && img.asset) // Filtro Defensivo Importante
+                .map((img: any) => urlFor(img).width(800).url())
+            : []
         }));
 
         setWorks(formattedWorks);
