@@ -5,6 +5,17 @@ export default defineType({
   title: 'Obras',
   type: 'document',
   fields: [
+
+    defineField({
+      name: 'processImages',
+      title: 'Processo Criativo (Etapas)',
+      type: 'array',
+      of: [{ type: 'image' }],
+      options: {
+        layout: 'grid',
+      },
+    }),
+    
     defineField({
       name: 'title',
       title: 'Título da Obra',
