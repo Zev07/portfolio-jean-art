@@ -49,7 +49,10 @@ export default function HomeCarousel({ works }: Readonly<CarouselProps>) {
                   src={urlFor(work.mainImage).width(700).height(900).url()}
                   alt={work.title}
                   fill
+                  loading="lazy"
+                  sizes="(max-width: 768px) 82vw, (max-width: 1024px) 36vw, 29vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105 saturate-125"
+                  quality={75}
                 />
 
                 <div className="absolute top-2 left-2 bg-[#d8203e] px-2 py-1">
