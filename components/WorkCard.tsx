@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
 
 interface WorkCardProps {
   work: {
@@ -29,8 +29,8 @@ export default function WorkCard({ work }: WorkCardProps) {
         />
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-black"></div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full bg-black/90 p-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-200 z-10">
-        <p className="text-white text-xs font-black uppercase tracking-widest text-center">
+      <div className="absolute bottom-0 left-0 w-full bg-black/90 dark:bg-white/90 p-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-200 z-10">
+        <p className="text-white dark:text-black text-xs font-black uppercase tracking-widest text-center">
             {work.title}
         </p>
       </div>

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
 import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 import { Loader2, Send } from "lucide-react";
+import { useRef, useState } from "react";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -108,7 +108,7 @@ export default function ContactForm() {
       <button
         disabled={status === "loading" || status === "success"}
         type="submit"
-        className="w-full bg-black dark:bg-white text-white dark:text-black font-black uppercase tracking-[0.2em] py-4 hover:bg-[#D91C2B] hover:text-white dark:hover:bg-[#D91C2B] dark:hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full bg-black dark:bg-white text-white dark:text-black font-black uppercase tracking-[0.2em] py-4 hover:bg-[#d8203e] hover:text-white dark:hover:bg-[#d8203e] dark:hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {status === "loading" ? (
           <>
@@ -124,7 +124,7 @@ export default function ContactForm() {
       </button>
 
       {status === "error" && (
-        <p className="text-[#D91C2B] font-bold text-center text-sm">
+        <p className="text-[#d8203e] font-bold text-center text-sm">
           Erro ao enviar. Tente novamente mais tarde.
         </p>
       )}

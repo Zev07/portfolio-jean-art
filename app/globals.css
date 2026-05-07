@@ -1,11 +1,45 @@
 @import "tailwindcss";
 @import "tailwindcss/utilities";
 
-/* --- CONFIGURAÇÃO DE CORES (PERSONA 5 THEME) --- */
+/* --- SUBLIMA FONT FACES --- */
+@font-face {
+  font-family: "Sublima";
+  src: url("/fonts/Sublima-ExtraLight.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sublima";
+  src: url("/fonts/Sublima-ExtraLightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Sublima";
+  src: url("/fonts/Sublima-ExtraBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sublima";
+  src: url("/fonts/Sublima-ExtraBoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* --- CONFIGURAÇÃO DE CORES (JEANX THEME) --- */
 :root {
   /* === MODO CLARO (Jornal/Mangá) === */
   --background: #f4f4f5;      /* Zinco bem claro (Papel) */
   --foreground: #000000;      /* Preto Absoluto (Tinta) */
+  --text-primary: #000000;
+  --text-secondary: #52525b;
+  --bg-card: #ffffff;
+  --bg-dark: #ffffff;
+  --color-primary: #2563eb;
   
   /* ELEMENTOS */
   --card-bg: #ffffff;         /* Cards Brancos */
@@ -13,13 +47,19 @@
   --muted: #52525b;           /* Texto secundário cinza escuro */
   
   /* DESTAQUE */
-  --primary-color: #D91C2B;   /* Vermelho Persona */
+  --primary-color: #2563eb;   /* Azul */
+  --secondary-color: #fbbf24; /* Amarelo/Ouro */
 }
 
-.dark {
-  /* === MODO ESCURO (Phantom Thief) === */
+html.dark {
+  /* === MODO ESCURO === */
   --background: #09090b;      /* Preto Profundo */
   --foreground: #ffffff;      /* Branco Puro */
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --bg-card: #000000;
+  --bg-dark: #000000;
+  --color-primary: #d8203e;
   
   /* ELEMENTOS */
   --card-bg: #000000;         /* Cards Pretos */
@@ -27,23 +67,70 @@
   --muted: #a1a1aa;           /* Texto secundário cinza claro */
   
   /* DESTAQUE */
-  --primary-color: #D91C2B;   /* Vermelho Persona */
+  --primary-color: #d8203e;   /* Vermelho */
+  --secondary-color: #27dfcf; /* Ciano */
 }
 
 /* --- APLICANDO AO SITE --- */
 body {
   background-color: var(--background);
   color: var(--foreground);
+  font-family: "Sublima", sans-serif;
   /* Transição suave ao trocar de tema */
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.font-display {
+  font-family: "Sublima", sans-serif;
+  font-weight: 700;
+}
+
+.font-accent {
+  font-family: "Sublima", sans-serif;
+  font-weight: 500;
+}
+
+.retro-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+.noise-layer {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.18;
+}
+
+.carousel-fade {
+  mask-image: linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 5%, black 12%, black 88%, rgba(0,0,0,0.4) 95%, rgba(0,0,0,0.15) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 5%, black 12%, black 88%, rgba(0,0,0,0.4) 95%, rgba(0,0,0,0.15) 100%);
+}
+
+@media (max-width: 768px) {
+  .carousel-fade {
+    mask-image: linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 8%, black 15%, black 85%, rgba(0,0,0,0.4) 92%, rgba(0,0,0,0.15) 100%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 8%, black 15%, black 85%, rgba(0,0,0,0.4) 92%, rgba(0,0,0,0.15) 100%);
+  }
 }
 
 /* --- UTILITÁRIOS FORÇADOS --- */
 @layer utilities {
   .text-foreground { color: var(--foreground) !important; }
   .bg-background { background-color: var(--background) !important; }
-  
-  /* Classes Persona Específicas */
   .bg-card { background-color: var(--card-bg) !important; }
   .border-card { border-color: var(--card-border) !important; }
+}
+
+/* --- NAVBAR ACTIVE LINK STYLE --- */
+@layer components {
+  .navbar-link-active {
+    @apply bg-[#27dfcf] text-black px-5 py-3;
+    font-family: "Sublima", sans-serif;
+    font-weight: 700;
+    clip-path: polygon(0% 15%, 15% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
 }

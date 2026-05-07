@@ -24,16 +24,18 @@ export default defineType({
 
     defineField({
       name: 'category',
-      title: 'Categoria',
+      title: 'Subcategoria',
       type: 'string',
       options: {
         list: [
-          { title: 'Obra Principal', value: 'principal' },
-          { title: 'Sketch / Estudo', value: 'sketch' },
+          { title: 'Ilustração', value: 'illustration' },
+          { title: 'Modelo 3D', value: '3dmodel' },
+          { title: 'Estudo', value: 'study' },
+          { title: 'Outro', value: 'other' },
         ],
         layout: 'radio',
       },
-      initialValue: 'principal',
+      initialValue: 'illustration',
       validation: (Rule) => Rule.required(),
     }),
 

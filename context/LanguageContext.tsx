@@ -14,7 +14,7 @@ const translations = {
     
     // Home Page
     homeTitle: "Bem vindo ao meu Mundo",
-    homeSubtitle: "Detalhes fazem a perfeição, mas a perfeição não é um detalhe.",
+    homeSubtitle: "Obras Recentes",
     viewFullPortfolio: "Ver o Portfólio Completo",
     aboutProcess: "Sobre o Processo",
     homeQuote: "Minha arte não é sobre a resposta, é sobre a pergunta. Eu busco nas texturas urbanas e na natureza as formas que dialogam com o silêncio interior.",
@@ -23,6 +23,9 @@ const translations = {
     interestedInCommission: "Interessado em pedir uma obra?",
     contactForDetails: "Entre em contato para comissões ou para mais detalhes.",
     talkToMe: "Fale Comigo",
+    
+    // Skills Section
+    aboutMySkills: "Sobre Minhas Habilidades",
     
     // About Page
     biography: "Biografia",
@@ -98,6 +101,9 @@ const translations = {
     interestedInCommission: "Interested in commissioning a piece?",
     contactForDetails: "Get in touch for commissions or more details.",
     talkToMe: "Talk to Me",
+    
+    // Skills Section
+    aboutMySkills: "About My Skills",
     
     // About Page
     biography: "Biography",

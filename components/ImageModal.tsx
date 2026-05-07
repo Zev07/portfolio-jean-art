@@ -1,9 +1,9 @@
 "use client";
 
-import { Download, X, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { WorkItem } from "@/app/obras/page";
+import { ChevronLeft, ChevronRight, Download, Plus, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { WorkItem } from "@/app/obras/page";
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -67,11 +67,11 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
   return (
     <div 
       onClick={onClose}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-md p-4 animate-in fade-in duration-300 overflow-y-auto"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 dark:bg-white/95 backdrop-blur-md p-4 animate-in fade-in duration-300 overflow-y-auto"
     >
       <button
         onClick={onClose}
-        className="fixed top-6 right-6 z-50 bg-[#D91C2B] text-white p-2 hover:bg-white hover:text-black hover:rotate-90 transition-all duration-300 shadow-[4px_4px_0px_#fff]"
+        className="fixed top-6 right-6 z-50 bg-[#d8203e] text-white p-2 hover:bg-white hover:text-black hover:rotate-90 transition-all duration-300 shadow-[4px_4px_0px_#fff]"
       >
         <X size={32} />
       </button>
@@ -85,12 +85,12 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
             
             <button
                 onClick={handlePrev}
-                className="absolute left-[-20px] md:left-[-60px] z-40 bg-black text-white p-3 border-2 border-white hover:bg-[#D91C2B] hover:scale-110 transition-all shadow-[4px_4px_0px_#fff] hidden md:block"
+                className="absolute left-[-20px] md:left-[-60px] z-40 bg-black dark:bg-white text-white dark:text-black p-3 border-2 border-white dark:border-black hover:bg-[#d8203e] hover:scale-110 transition-all shadow-[4px_4px_0px_#fff] dark:shadow-[4px_4px_0px_#000] hidden md:block"
             >
                 <ChevronLeft size={32} />
             </button>
 
-            <div className="relative w-full h-auto max-h-[80vh] border-4 border-white shadow-[0_0_50px_rgba(217,28,43,0.3)] bg-black">
+            <div className="relative w-full h-auto max-h-[80vh] border-4 border-white dark:border-black shadow-[0_0_50px_rgba(217,28,43,0.3)] bg-black dark:bg-white">
                 <Image
                     src={currentWork.imageUrl}
                     alt={currentWork.title}
@@ -103,7 +103,7 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
 
             <button 
                 onClick={handleNext}
-                className="absolute right-[-20px] md:right-[-60px] z-40 bg-black text-white p-3 border-2 border-white hover:bg-[#D91C2B] hover:scale-110 transition-all shadow-[4px_4px_0px_#fff] hidden md:block"
+                className="absolute right-[-20px] md:right-[-60px] z-40 bg-black dark:bg-white text-white dark:text-black p-3 border-2 border-white dark:border-black hover:bg-[#d8203e] hover:scale-110 transition-all shadow-[4px_4px_0px_#fff] dark:shadow-[4px_4px_0px_#000] hidden md:block"
             >
                 <ChevronRight size={32} />
             </button>
@@ -114,8 +114,8 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
         </div>
         <div className="flex flex-col md:flex-row justify-between items-end border-b-2 border-zinc-700 pb-6 gap-4">
             <div>
-                <div className="bg-white inline-block px-6 py-2 transform -skew-x-12 border-l-8 border-[#D91C2B] mb-2">
-                    <h3 className="text-black font-black uppercase italic tracking-widest text-2xl transform skew-x-12">
+                <div className="bg-white inline-block px-6 py-2 border-l-8 border-[#d8203e] mb-2">
+                    <h3 className="text-black font-black uppercase italic tracking-widest text-2xl">
                         {currentWork.title}
                     </h3>
                 </div>
@@ -128,7 +128,7 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
             
             <button
                 onClick={handleDownload}
-                className="flex items-center gap-2 bg-transparent text-white px-6 py-2 border-2 border-white hover:bg-[#D91C2B] hover:border-[#D91C2B] transition-colors"
+                className="flex items-center gap-2 bg-transparent text-white px-6 py-2 border-2 border-white hover:bg-[#d8203e] hover:border-[#d8203e] transition-colors"
             >
                 <Download size={20} />
                 <span className="font-bold uppercase tracking-widest text-sm">Download HD</span>
@@ -139,7 +139,9 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
             <div className="animate-in slide-in-from-bottom-10 duration-500 delay-100">
                 
                 <div className="flex items-center gap-4 mb-6">
-                    <Star className="text-[#D91C2B] fill-[#D91C2B] animate-spin-slow" size={24} />
+                    <div className="transform rotate-45">
+                      <Plus className="text-[#d8203e] animate-spin-slow" size={24} strokeWidth={2} />
+                    </div>
                     <h4 className="text-white text-xl font-black uppercase tracking-[0.2em]">
                         Creative Process Evidence
                     </h4>
@@ -147,7 +149,7 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {currentWork.processImages.map((img, index) => (
-                        <div key={index} className="group relative border-2 border-zinc-700 bg-black p-2 hover:border-[#D91C2B] transition-colors">
+                        <div key={index} className="group relative border-2 border-zinc-700 bg-black p-2 hover:border-[#d8203e] transition-colors">
                             <div className="relative aspect-video overflow-hidden">
                                 <Image
                                     src={img}
