@@ -36,7 +36,7 @@ export default function Navbar() {
           {/* Logo - Canto Esquerdo */}
           <Link href="/" className="hover:opacity-80 transition-opacity flex-shrink-0 -ml-6 md:-ml-12">
             <Image
-              src="/images/Jeanxartworks.png"
+              src="/images/jeanxartworks.png"
               alt="JeanX Artworks"
               width={160}
               height={64}
