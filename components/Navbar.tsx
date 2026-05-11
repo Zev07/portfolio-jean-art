@@ -23,14 +23,13 @@ export default function Navbar() {
   if (!mounted) return null;
 
   const links = [
-    { label: t.home, href: "/" },
     { label: t.works, href: "/obras" },
     { label: t.about, href: "/sobre" },
     { label: t.contact, href: "/contato" },
   ];
 
   return (
-    <div className="sticky top-0 z-50 py-0 flex justify-center">
+    <div className="fixed top-0 left-0 right-0 z-50 py-0 flex justify-center w-full">
       <nav className="py-0.05 md:py-0.05 px-0 md:px-12" style={{ backgroundColor: 'var(--bg-dark)' }}>
         <div className="flex items-center justify-between gap-8">
           {/* Logo - Canto Esquerdo */}
@@ -48,19 +47,30 @@ export default function Navbar() {
           {/* Desktop Navigation - Centro/Direita */}
           <div className="hidden md:flex items-center gap-8">
             <ul className="flex gap-4">
-              {links.map((link) => {
+              {links.map((link, index) => {
                 const isActive = pathname === link.href;
+                const skewValues = ["skew-y-2", "-skew-y-1", "skew-y-1.5"];
+                const trapezoidShapes = [
+                  "polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%)",
+                  "polygon(0% 0%, 95% 0%, 85% 100%, 5% 100%)",
+                  "polygon(5% 0%, 100% 0%, 100% 100%, 10% 100%)",
+                ];
                 
                 return (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className={`px-3 py-2 font-bold uppercase text-xs tracking-wider transition-colors duration-200 ${
+                      className={`relative px-3 py-2 font-bold uppercase text-xs tracking-wider transition-colors duration-200 ${skewValues[index]} ${
                         isActive
                           ? "bg-[#00CED1] text-black"
                           : "hover:text-[#00CED1]"
                       }`}
-                      style={!isActive ? { color: 'var(--text-primary)' } : undefined}
+                      style={{
+                        ...(!isActive ? { color: 'var(--text-primary)' } : {}),
+                        ...(isActive ? {
+                          clipPath: trapezoidShapes[index]
+                        } : {})
+                      }}
                     >
                       {link.label}
                     </Link>

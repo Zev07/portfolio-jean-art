@@ -43,7 +43,7 @@ export default function HomeCarousel({ works }: Readonly<CarouselProps>) {
             <div key={work._id} className="flex-[0_0_82%] md:flex-[0_0_36%] lg:flex-[0_0_29%] min-w-0 pl-4 md:pl-5 pb-3">
               <Link
                 href="/obras"
-                className="group block relative h-80 md:h-96 border-2 border-[#d8203e] bg-white overflow-hidden"
+                className="group block relative aspect-square border-2 border-[#d8203e] bg-white overflow-hidden"
               >
                 <Image
                   src={urlFor(work.mainImage).width(700).height(900).url()}
@@ -59,10 +59,10 @@ export default function HomeCarousel({ works }: Readonly<CarouselProps>) {
                 </div>
 
                 <div className="absolute bottom-3 right-3 bg-white px-3 py-2 text-black">
-                  <h3 className="font-accent text-lg font-black uppercase italic leading-none">
+                  <h3 className="font-accent text-xl font-black uppercase italic leading-none">
                     {work.title}
                   </h3>
-                  <p className="font-accent text-xs font-bold tracking-wide">{work.year}</p>
+                  <p className="font-accent text-sm font-black tracking-wide">{work.year}</p>
                 </div>
               </Link>
             </div>

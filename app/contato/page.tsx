@@ -15,7 +15,7 @@ export default function ContatoPage() {
       <div className="fixed inset-0 pointer-events-none opacity-5 z-0"
           style={{ backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-40 md:pt-52 pb-12 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
         <section className="flex flex-col h-full justify-center">
           <div className="mb-6 inline-block bg-black p-4 shadow-[8px_8px_0px_#d8203e]">
             <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter">

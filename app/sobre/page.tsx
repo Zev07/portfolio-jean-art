@@ -12,7 +12,7 @@ export default function SobrePage() {
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden opacity-10">
          <div className="absolute bottom-[-20%] right-[-20%] w-[150%] h-[50%] bg-[#27dfcf] rotate-12 transform-gpu" />
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-40 md:pt-52 pb-12 grid grid-cols-1 md:grid-cols-12 gap-16">
         <aside className="md:col-span-3 md:sticky md:top-32 md:h-fit">
           <div className="relative aspect-square mb-8 border-4 border-black dark:border-zinc-200 bg-black shadow-[12px_12px_0px_#d8203e] hover:shadow-[16px_16px_0px_#000] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-200">
             <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-500">
@@ -23,9 +23,6 @@ export default function SobrePage() {
                 className="object-cover"
                 priority
                 />
-            </div>
-            <div className="absolute -top-3 -left-3 bg-[#d8203e] text-white font-black text-xs px-2 py-1 transform -rotate-6 shadow-[2px_2px_0px_#000]">
-                WANTED
             </div>
           </div>
           <div className="mb-2 transform -skew-x-12 inline-block bg-black p-2 shadow-[6px_6px_0px_#ccc] dark:shadow-[6px_6px_0px_#333]">
@@ -88,10 +85,7 @@ export default function SobrePage() {
           </div>
         </aside>
         <section className="md:col-span-9 flex flex-col gap-16">
-          <div className="bg-card p-8 border-2 border-black dark:border-zinc-700 shadow-[8px_8px_0px_rgba(0,0,0,0.1)] relative">
-            <div className="absolute -top-3 -left-3 w-32 h-8 bg-[#d8203e] transform -rotate-3 z-20 shadow-sm flex items-center justify-center">
-                <span className="text-white font-black text-xs tracking-[0.3em]">CONFIDENTIAL</span>
-            </div>
+          <div className="bg-card p-8 border-4 border-black dark:border-zinc-500 shadow-[12px_12px_0px_#d8203e] relative">
             <h2 className="text-2xl font-black uppercase italic tracking-tighter text-foreground mb-6 flex items-center gap-3">
                 <Plus className="text-[#d8203e]" size={20} strokeWidth={2} />
                 {t.biography}

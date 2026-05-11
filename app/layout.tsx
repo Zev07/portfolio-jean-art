@@ -62,9 +62,7 @@ export default function RootLayout({
             storageKey="theme-mode"
           >
             <Navbar />
-            <main className="min-h-screen">
-              {children}
-            </main>
+            {children}
             <Footer />
           </ThemeProvider>
         </LanguageProvider>

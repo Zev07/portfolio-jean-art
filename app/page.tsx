@@ -2,7 +2,6 @@
 
 import HomeCarousel from "@/components/HomeCarousel";
 import SkillsSection from "@/components/SkillsSection";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -43,33 +42,32 @@ export default function Home() {
   }, []);
   
   return (
-    <main className="relative selection:bg-[#d8203e] selection:text-white overflow-x-hidden" style={{ color: 'var(--foreground)', backgroundColor: 'var(--background)' }}>
-      <section className="retro-hero relative isolate overflow-hidden px-4 pt-0 pb-20 md:px-8 md:pb-28 bg-[url('/images/ema.png')] bg-cover bg-center bg-no-repeat min-h-screen">
-        <div className="absolute inset-0 bg-black/20 z-0" />
+    <main className="min-h-screen text-foreground transition-colors duration-300 selection:bg-[#d8203e] selection:text-white overflow-x-hidden" style={{ color: 'var(--foreground)' }}>
+      <section className="retro-hero relative isolate overflow-hidden px-4 pt-0 pb-20 md:px-8 md:pb-28 bg-[url('/images/ema.png')] bg-cover bg-center bg-no-repeat min-h-[120vh] -mt-16">
+        <div className="absolute inset-0 bg-black/60 z-0" />
         <div className="noise-layer absolute inset-0 z-0 pointer-events-none" />
 
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 md:gap-12 pt-8 md:pt-12">
-          <h1 className="font-display text-[56px] leading-[0.95] tracking-tight text-white drop-shadow-[6px_6px_0_#d8203e] md:text-[120px]">
-            HELLO WORLD!
-          </h1>
-
-          <div className="flex items-start justify-between gap-6">
-            <div className="max-w-2xl">
-              <p className="inline-block border-l-4 border-[#d8203e] px-4 py-2 font-accent text-2xl font-black uppercase italic md:text-3xl" style={{ backgroundColor: 'var(--bg-dark)', color: 'var(--text-primary)' }}>
-                {t.recentWorks}
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 md:gap-6 pt-60 md:pt-72 items-center relative z-10">
+          <div className="flex items-end justify-center gap-80 w-full relative z-20">
+            <div className="relative z-20">
+              <p className="inline-block border-l-4 border-[#d8203e] px-4 py-2 font-accent text-xl font-black uppercase italic md:text-2xl" style={{ backgroundColor: 'var(--bg-dark)', color: 'var(--text-primary)' }}>
+                Ultimas criações
               </p>
             </div>
+
+            <h1 className="font-display text-4xl leading-[0.95] tracking-tight text-white drop-shadow-[6px_6px_0_#d8203e] md:text-7xl italic whitespace-nowrap">
+              HELLO WORLD!
+            </h1>
           </div>
 
           <HomeCarousel works={recentWorks} />
 
-          <div className="flex justify-center pt-2 md:justify-start relative z-10">
+          <div className="flex justify-center relative z-10">
             <Link
               href="/obras"
-              className="group inline-flex items-center gap-3 bg-[#d8203e] px-7 py-4 font-accent text-3xl font-black uppercase italic tracking-wide text-white transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[8px_8px_0px_#000] dark:hover:shadow-[8px_8px_0px_#fff] border-2 border-transparent hover:border-white pointer-events-auto cursor-pointer"
+              className="inline-block bg-[#d8203e] px-6 py-3 font-accent text-2xl font-black uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[8px_8px_0px_#000] dark:hover:shadow-[8px_8px_0px_#fff] border-2 border-transparent hover:border-white pointer-events-auto cursor-pointer"
             >
               {t.viewFullPortfolio}
-              <ArrowRight size={24} className="transition-transform group-hover:translate-x-2" />
             </Link>
           </div>
         </div>

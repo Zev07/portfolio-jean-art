@@ -110,56 +110,70 @@ export default function ObrasPage() {
   return (
     <main className="min-h-screen pb-20 bg-background overflow-x-hidden selection:bg-[#d8203e] selection:text-white transition-colors duration-300">
       
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden opacity-10">
-         <div className="absolute top-[-20%] left-[-20%] w-[150%] h-[50%] bg-[#d8203e] -rotate-12 transform-gpu" />
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden opacity-5">
+         <div className="absolute top-[-20%] left-[-20%] w-[150%] h-[50%] bg-[#d8203e] -rotate-12 transform-gpu animate-pulse" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-40 md:pt-52 pb-12">
         
         {/* CATEGORIA MENU */}
-        <div className="mb-24 flex flex-wrap gap-4 items-center justify-center">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
-              className={`transition-all duration-300 text-2xl md:text-3xl font-black capitalize tracking-tighter ${
-                selectedCategory === category.id
-                  ? "bg-[#d8203e] px-8 py-4 shadow-[6px_6px_0px_#000] dark:shadow-[6px_6px_0px_#fff] border-2 border-black dark:border-white text-white italic"
-                  : "text-foreground hover:opacity-70"
-              }`}
-            >
-              <span className={selectedCategory === category.id ? "text-white italic" : ""}>
-                {category.label}
-              </span>
-            </button>
-          ))}
+        <div className="mb-32 flex flex-wrap gap-4 items-center justify-center">
+          {categories.map((category, index) => {
+            const trapezoidShapes = [
+              "polygon(0% 0%, 85% 0%, 100% 100%, 0% 100%)",
+              "polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%)",
+              "polygon(0% 0%, 95% 0%, 85% 100%, 5% 100%)",
+              "polygon(5% 0%, 100% 0%, 100% 100%, 10% 100%)",
+            ];
+
+            return (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`transition-all duration-500 ease-out text-2xl md:text-3xl font-black capitalize tracking-tighter relative transform hover:scale-105 ${
+                  selectedCategory === category.id
+                    ? "bg-[#d8203e] px-8 py-4 shadow-[8px_8px_0px_#000] dark:shadow-[8px_8px_0px_#fff] border-2 border-black dark:border-white text-white italic"
+                    : "text-foreground hover:opacity-80"
+                }`}
+                style={{
+                  ...(selectedCategory === category.id ? {
+                    clipPath: trapezoidShapes[index]
+                  } : {})
+                }}
+              >
+                <span className={selectedCategory === category.id ? "text-white italic" : ""}>
+                  {category.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* GALERIA DA CATEGORIA SELECIONADA */}
         {currentWorks.length > 0 ? (
-          <section className="mb-40">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <section className="mb-40 flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
               {currentWorks.map((work) => (
                 <div
                   key={work.id}
                   onClick={() => handleOpenImage(work)}
-                  className="group relative cursor-pointer border-4 border-black dark:border-zinc-200 bg-white dark:bg-black shadow-[8px_8px_0px_#000] dark:shadow-[8px_8px_0px_#d8203e] hover:shadow-[12px_12px_0px_#d8203e] dark:hover:shadow-[12px_12px_0px_#fff] hover:-translate-y-2 hover:-translate-x-1 transition-all duration-200 ease-out"
+                  className="group relative cursor-pointer overflow-hidden bg-white dark:bg-black shadow-[6px_6px_0px_#000] dark:shadow-[6px_6px_0px_#d8203e] hover:shadow-[12px_12px_0px_#d8203e] dark:hover:shadow-[12px_12px_0px_#fff] hover:-translate-y-3 transition-all duration-500 ease-out border-3 border-black dark:border-zinc-300"
                 >
                   <div className="relative overflow-hidden bg-white">
-                    <div className="relative scale-100 group-hover:scale-110 transition-all duration-300">
+                    <div className="relative scale-100 group-hover:scale-115 transition-transform duration-500">
                       <div className="[&_div.absolute.bottom-0]:hidden">
                         <WorkCard work={work} />
                       </div>
                     </div>
                     {/* Calling Card */}
-                    <div className="absolute bottom-4 left-0 w-full z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pl-2 pointer-events-none">
+                    <div className="absolute bottom-4 left-0 w-full z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pl-2 pointer-events-none">
                       <div className="bg-black inline-block px-3 py-1 border-2 border-white">
                         <h3 className="text-white font-black italic uppercase text-lg">
                           {work.title}
                         </h3>
                       </div>
                     </div>
-                    <div className="absolute top-2 right-2 z-30 opacity-0 group-hover:opacity-100 transition-all duration-300 rotate-45 group-hover:rotate-180">
+                    <div className="absolute top-2 right-2 z-30 opacity-0 group-hover:opacity-100 transition-all duration-500 rotate-45 group-hover:rotate-180">
                       <Plus className="text-white drop-shadow-[0_2px_0_#000]" size={28} strokeWidth={2} />
                     </div>
                   </div>

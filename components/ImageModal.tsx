@@ -71,7 +71,7 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
     >
       <button
         onClick={onClose}
-        className="fixed top-6 right-6 z-50 bg-[#d8203e] text-white p-2 hover:bg-white hover:text-black hover:rotate-90 transition-all duration-300 shadow-[4px_4px_0px_#fff]"
+        className="fixed top-6 right-6 z-50 bg-[#d8203e] text-white p-2 hover:bg-white hover:text-[#d8203e] hover:rotate-90 transition-all duration-300 shadow-[4px_4px_0px_rgba(0,0,0,0.5)] dark:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]"
       >
         <X size={32} />
       </button>
@@ -85,7 +85,7 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
             
             <button
                 onClick={handlePrev}
-                className="absolute left-[-20px] md:left-[-60px] z-40 bg-black dark:bg-white text-white dark:text-black p-3 border-2 border-white dark:border-black hover:bg-[#d8203e] hover:scale-110 transition-all shadow-[4px_4px_0px_#fff] dark:shadow-[4px_4px_0px_#000] hidden md:block"
+                className="absolute left-[-20px] md:left-[-60px] z-40 bg-black dark:bg-white text-white dark:text-black p-3 border-2 border-white dark:border-black hover:bg-[#d8203e] hover:text-white dark:hover:text-white hover:scale-110 transition-all shadow-[4px_4px_0px_rgba(255,255,255,0.5)] dark:shadow-[4px_4px_0px_rgba(0,0,0,0.5)] hidden md:block"
             >
                 <ChevronLeft size={32} />
             </button>
@@ -103,7 +103,7 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
 
             <button 
                 onClick={handleNext}
-                className="absolute right-[-20px] md:right-[-60px] z-40 bg-black dark:bg-white text-white dark:text-black p-3 border-2 border-white dark:border-black hover:bg-[#d8203e] hover:scale-110 transition-all shadow-[4px_4px_0px_#fff] dark:shadow-[4px_4px_0px_#000] hidden md:block"
+                className="absolute right-[-20px] md:right-[-60px] z-40 bg-black dark:bg-white text-white dark:text-black p-3 border-2 border-white dark:border-black hover:bg-[#d8203e] hover:text-white dark:hover:text-white hover:scale-110 transition-all shadow-[4px_4px_0px_rgba(255,255,255,0.5)] dark:shadow-[4px_4px_0px_rgba(0,0,0,0.5)] hidden md:block"
             >
                 <ChevronRight size={32} />
             </button>
@@ -112,15 +112,15 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
             <button onClick={handlePrev} className="bg-white text-black p-2 border-2 border-black"><ChevronLeft /></button>
             <button onClick={handleNext} className="bg-white text-black p-2 border-2 border-black"><ChevronRight /></button>
         </div>
-        <div className="flex flex-col md:flex-row justify-between items-end border-b-2 border-zinc-700 pb-6 gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-end border-b-2 border-zinc-700 dark:border-zinc-400 pb-6 gap-4">
             <div>
-                <div className="bg-white inline-block px-6 py-2 border-l-8 border-[#d8203e] mb-2">
-                    <h3 className="text-black font-black uppercase italic tracking-widest text-2xl">
+                <div className="bg-white dark:bg-black inline-block px-6 py-2 border-l-8 border-[#d8203e] mb-2 shadow-[4px_4px_0px_rgba(217,28,43,0.3)]">
+                    <h3 className="text-black dark:text-white font-black uppercase italic tracking-widest text-2xl">
                         {currentWork.title}
                     </h3>
                 </div>
                 {currentWork.description && (
-                    <p className="text-zinc-400 max-w-2xl mt-2 font-medium">
+                    <p className="text-lg dark:text-lg font-black text-black dark:text-black max-w-2xl mt-3 uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] bg-black/5 dark:bg-white/5 px-3 py-2 border-l-4 border-[#d8203e]">
                         {currentWork.description}
                     </p>
                 )}
@@ -128,10 +128,10 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
             
             <button
                 onClick={handleDownload}
-                className="flex items-center gap-2 bg-transparent text-white px-6 py-2 border-2 border-white hover:bg-[#d8203e] hover:border-[#d8203e] transition-colors"
+                className="flex items-center gap-2 bg-transparent text-white dark:text-black px-6 py-2 border-2 border-white dark:border-black hover:bg-[#d8203e] hover:border-[#d8203e] hover:text-white dark:hover:text-white transition-all font-bold uppercase tracking-widest text-sm shadow-[4px_4px_0px_rgba(217,28,43,0.3)]"
             >
-                <Download size={20} />
-                <span className="font-bold uppercase tracking-widest text-sm">Download HD</span>
+                <Download size={20} className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" />
+                <span>Download HD</span>
             </button>
         </div>
 
@@ -140,16 +140,16 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
                 
                 <div className="flex items-center gap-4 mb-6">
                     <div className="transform rotate-45">
-                      <Plus className="text-[#d8203e] animate-spin-slow" size={24} strokeWidth={2} />
+                      <Plus className="text-[#d8203e] animate-spin-slow drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" size={24} strokeWidth={2} />
                     </div>
-                    <h4 className="text-white text-xl font-black uppercase tracking-[0.2em]">
+                    <h4 className="text-white dark:text-black text-xl font-black uppercase tracking-[0.2em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
                         Creative Process Evidence
                     </h4>
-                    <div className="h-[2px] flex-1 bg-zinc-800"></div>
+                    <div className="h-[2px] flex-1 bg-zinc-800 dark:bg-zinc-400"></div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {currentWork.processImages.map((img, index) => (
-                        <div key={index} className="group relative border-2 border-zinc-700 bg-black p-2 hover:border-[#d8203e] transition-colors">
+                        <div key={index} className="group relative border-2 border-zinc-700 dark:border-zinc-400 bg-black dark:bg-white p-2 hover:border-[#d8203e] transition-colors shadow-[4px_4px_0px_rgba(217,28,43,0.2)]">
                             <div className="relative aspect-video overflow-hidden">
                                 <Image
                                     src={img}
@@ -158,7 +158,7 @@ export default function ImageModal({ isOpen, initialWork, allWorks, onClose }: I
                                     className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                                 />
                             </div>
-                            <div className="absolute -top-3 -left-2 bg-black text-zinc-500 text-xs font-bold px-2 border border-zinc-800">
+                            <div className="absolute -top-3 -left-2 bg-black dark:bg-white text-zinc-500 dark:text-zinc-600 text-xs font-bold px-2 border border-zinc-800 dark:border-zinc-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
                                 STEP 0{index + 1}
                             </div>
                         </div>

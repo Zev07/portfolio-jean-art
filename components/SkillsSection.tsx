@@ -171,13 +171,6 @@ export default function SkillsSection() {
                 </div>
               </div>
             </div>
-
-            {/* "my programs stack" text */}
-            <div className="text-left">
-              <h3 className="font-display text-2xl md:text-4xl font-black uppercase tracking-tight" style={{ color: 'var(--text-primary)' }}>
-                my programs stack.
-              </h3>
-            </div>
           </div>
         </div>
       </section>

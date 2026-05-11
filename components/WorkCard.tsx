@@ -20,7 +20,7 @@ export default function WorkCard({ work }: WorkCardProps) {
 
   return (
     <div className="w-full h-full relative group bg-white dark:bg-zinc-900 border-b-4 border-black dark:border-zinc-700">
-      <div className="relative aspect-[3/4] overflow-hidden w-full">
+      <div className="relative aspect-square overflow-hidden w-full">
         <Image
           src={imageSrc}
           alt={work.title}
