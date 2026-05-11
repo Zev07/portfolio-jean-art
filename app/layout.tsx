@@ -29,6 +29,13 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  metadataBase: new URL('https://jeanxartworks.com'),
+  openGraph: {
+    type: 'website',
+    locale: 'pt_BR',
+    title: 'Portfólio | JeanX',
+    description: 'Portfólio oficial de arte de JeanX',
+  },
 };
 export default function RootLayout({
   children,
@@ -38,6 +45,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://cdn.sanity.io" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

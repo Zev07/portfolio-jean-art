@@ -119,6 +119,8 @@ export default function SkillsSection() {
                     width={280}
                     height={280}
                     className="w-full h-auto object-contain"
+                    loading="lazy"
+                    quality={75}
                   />
                 </div>
               </div>
@@ -147,6 +149,8 @@ export default function SkillsSection() {
                         width={120}
                         height={120}
                         className="w-full h-full object-cover"
+                        loading="lazy"
+                        quality={75}
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = "none";
@@ -167,6 +171,8 @@ export default function SkillsSection() {
                     width={280}
                     height={280}
                     className="w-full h-auto object-contain"
+                    loading="lazy"
+                    quality={75}
                   />
                 </div>
               </div>
